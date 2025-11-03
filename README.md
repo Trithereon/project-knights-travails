@@ -1,6 +1,4 @@
-::: {.section data-title="assignment"}
-
-### [Assignment](#assignment){.anchor-link}
+### Project: Knights Travails
 
 Your task is to build a function `knightMoves` that shows the shortest
 possible way to get from one square to another by outputting all squares
@@ -11,7 +9,6 @@ your function would therefore look like:
 
 `knightMoves([0,0],[1,2]) // returns [[0,0],[1,2]]`
 
-::: lesson-note
 Sometimes _there is more than one fastest path_. Examples of this are
 shown below. Any answer is correct as long as it follows the rules and
 gives the shortest possible path.
@@ -23,9 +20,6 @@ gives the shortest possible path.
 - `knightMoves([0,0],[7,7])` may return
   `[[0,0],[2,1],[4,2],[6,3],[4,4],[6,5],[7,7]]` or
   `[[0,0],[2,1],[4,2],[6,3],[7,5],[5,6],[7,7]]`.
-  :::
-
-::: lesson-content\_\_panel
 
 1.  Think about the rules of the board and knight, and make sure to
     follow them.
@@ -39,15 +33,10 @@ gives the shortest possible path.
     that full path looks like, e.g.:
 
 ```{=html}
-<!-- -->
-```
-
     > knightMoves([3,3],[4,3])
     => You made it in 3 moves!  Here's your path:
       [3,3]
       [4,5]
       [2,4]
       [4,3]
-
-:::
-:::
+```
