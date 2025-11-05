@@ -53,7 +53,7 @@ function genMoves(currentPosition) {
   // The sum of the current pos + each move, if valid,
   // will be pushed to the validMoves array.
   potentialMoves.forEach((move) => {
-    const result = pos.map((num, index) => num + move[index]);
+    const result = [pos[0] + move[0], pos[1] + move[1]];
     if (isValid(result)) {
       validMoves.push(result);
     }
