@@ -31,3 +31,8 @@ Idea: I probably need recursion, where I select the Math.min() of multiple value
 - However, the instructions say to avoid thinking about this as a tree, but more as a graph.
 
 - Need to have a function that generates a list of valid moves, based on current position.
+
+- Ok I made the Validity check and Move generation functions.
+- I think the move generation function needs to be called every move, as I traverse in a BFS way through the graph.
+- I just found out that Set objects are great at preventing duplicates, so I'd like to use one to keep track of which positions have been visited.
+- HOWEVER, a Set can contain identical arrays, since the equality of REFERENCE is tested, not the equality of content or value. So I need to convert my [x,y] position arrays into something else, maybe strings? JSON.stringify?

@@ -1,10 +1,34 @@
 // knightMoves function module
-
 function knightMoves(start, end) {
   // Validate input.
   validateInput(start, end);
 
-  const queue = [];
+  const queue = [{ position: start, path: [start] }];
+  const visited = new Set();
+  const startStr = JSON.stringify(start);
+  const endStr = JSON.stringify(end);
+  visited.add(startStr);
+
+  while (queue.length > 0) {
+    // dequeue item
+    const item = queue.shift();
+    // check if position matches end pos.
+    if (JSON.stringify(item.position) === endStr) {
+      const path = JSON.stringify(item.path);
+      return `You made it in ${item.path.length} moves! Here is your path: ${path}`;
+    } else {
+      // else, genMoves(item), add each one to queue.
+      const nextMoves = genMoves(item.position);
+      nextMoves.forEach((move) => {
+        const moveStr = JSON.stringify(move);
+        // If not visited yet, enqueue move.
+        if (!visited.has(moveStr)) {
+          visited.add(moveStr);
+          queue.push({ position: move, path: [...item.path, move] });
+        }
+      });
+    }
+  }
 }
 
 function validateInput(start, end) {
@@ -33,8 +57,7 @@ function isValid(position) {
 }
 
 // Returns a list of valid moves in an array.
-function genMoves(currentPosition) {
-  const pos = currentPosition;
+function genMoves(node) {
   const validMoves = [];
 
   // List of potential moves.
@@ -50,10 +73,10 @@ function genMoves(currentPosition) {
   ];
 
   // Attempt each move. If valid, push to validMoves array.
-  // The sum of the current pos + each move, if valid,
+  // The sum of the current node + each move, if valid,
   // will be pushed to the validMoves array.
   potentialMoves.forEach((move) => {
-    const result = [pos[0] + move[0], pos[1] + move[1]];
+    const result = [node[0] + move[0], node[1] + move[1]];
     if (isValid(result)) {
       validMoves.push(result);
     }
