@@ -15,7 +15,9 @@ function knightMoves(start, end) {
     // check if position matches end pos.
     if (JSON.stringify(item.position) === endStr) {
       const path = JSON.stringify(item.path);
-      return `You made it in ${item.path.length} moves! Here is your path: ${path}`;
+      return `You made it in ${
+        item.path.length - 1
+      } moves! Here is your path: ${path}`;
     } else {
       // else, genMoves(item), add each one to queue.
       const nextMoves = genMoves(item.position);
