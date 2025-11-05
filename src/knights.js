@@ -1,27 +1,63 @@
 // knightMoves function module
 
-export default function knightMoves(start, end) {
+function knightMoves(start, end) {
   // Validate input.
-  _validateInput(start, end);
+  validateInput(start, end);
+
+  const queue = [];
 }
 
-function _validateInput(start, end) {
+function validateInput(start, end) {
   if (
-    start[0] < 0 ||
-    start[0] > 7 ||
-    start[1] < 0 ||
-    start[1] > 7 ||
+    !isValid(start) ||
+    !Number.isInteger(start[0]) ||
+    !Number.isInteger(start[1]) ||
     !Array.isArray(start)
   ) {
     throw new Error("Start position invalid. Must be between [0,0] and [7,7]");
   }
   if (
-    end[0] < 0 ||
-    end[0] > 7 ||
-    end[1] < 0 ||
-    end[1] > 7 ||
+    !isValid(end) ||
+    !Number.isInteger(end[0]) ||
+    !Number.isInteger(end[1]) ||
     !Array.isArray(end)
   ) {
     throw new Error("End position invalid. Must be between [0,0] and [7,7]");
   }
+}
+
+function isValid(position) {
+  if (position[0] < 0 || position[0] > 7 || position[1] < 0 || position[1] > 7)
+    return false;
+  else return true;
+}
+
+// Returns a list of valid moves in an array.
+function genMoves(currentPosition) {
+  const pos = currentPosition;
+  const validMoves = [];
+
+  // List of potential moves.
+  const potentialMoves = [
+    [2, 1],
+    [1, 2],
+    [-1, 2],
+    [-2, 1],
+    [-2, -1],
+    [-1, -2],
+    [1, -2],
+    [2, -1],
+  ];
+
+  // Attempt each move. If valid, push to validMoves array.
+  // The sum of the current pos + each move, if valid,
+  // will be pushed to the validMoves array.
+  potentialMoves.forEach((move) => {
+    const result = pos.map((num, index) => num + move[index]);
+    if (isValid(result)) {
+      validMoves.push(result);
+    }
+  });
+
+  return validMoves;
 }

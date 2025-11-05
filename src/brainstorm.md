@@ -29,3 +29,5 @@ There are three data structures to choose from:
 Idea: I probably need recursion, where I select the Math.min() of multiple values. I did that for the BST, except I was choosing the Math.max() returned value in my recursive calls.
 
 - However, the instructions say to avoid thinking about this as a tree, but more as a graph.
+
+- Need to have a function that generates a list of valid moves, based on current position.
